@@ -101,8 +101,8 @@ public class Login extends JFrame {
 					if(rs.next()) {
 						// if username and password is true
 						dispose(); // close login page
-						StudentDetails studentdetails = new StudentDetails();
-						studentdetails.setVisible(true);
+						RegisterStudents rstudent = new RegisterStudents();
+						rstudent.setVisible(true);
 					} else {
 						// if username and password is false
 						//JOptionPane.showMessageDialog(this, "username or password wrong..");

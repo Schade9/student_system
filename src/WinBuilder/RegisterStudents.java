@@ -145,14 +145,14 @@ public class RegisterStudents extends JFrame {
 				String gender = String.valueOf(genderBox.getSelectedItem());
 				String age = ageTextField.getText().toString();
 				String subject = String.valueOf(subjectBox.getSelectedItem());
-				String studentClass = stclass.getText().toString();
+				String studentClass = classtextField.getText().toString();
 				
 				try {	
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_sytem?useSSL=false","root","");
 					System.out.println("Connection to db established");
 					
-					PreparedStatement ps = con.prepareStatement("INSERT INTO students(first_name, last_name, registration_number, gender, age, subject, class) VALUES(?,?,?,?,?,?,?)");
+					PreparedStatement ps = con.prepareStatement("INSERT INTO students(first_name, last_name, registration_number, gender, age, subject, stclass) VALUES(?,?,?,?,?,?,?)");
 					ps.setString(1, firstName);
 					ps.setString(2, lastName);
 					ps.setString(3, regNumber);
@@ -165,8 +165,8 @@ public class RegisterStudents extends JFrame {
 					ps.close();
 					
 					dispose(); // close register Students
-					RegisteredStudents rs = new RegisteredStudents();
-					rs.setVisible(true);
+					RegisteredStudents regs = new RegisteredStudents();
+					regs.setVisible(true);
 					
 				} catch(Exception ex) {
 					System.out.println(ex);
