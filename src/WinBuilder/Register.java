@@ -145,5 +145,17 @@ public class Register extends JFrame {
 				}
 			}
 		});
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setBounds(201, 208, 117, 25);
+		contentPane.add(btnLogin);
+		
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login login = new Login();
+				login.setVisible(true);
+			}
+		});
 	}
 }

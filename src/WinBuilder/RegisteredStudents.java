@@ -63,7 +63,7 @@ public class RegisteredStudents extends JFrame {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			
-			String columns[] = {"First name", "Last name", "Registration number", "Gender", "Age", "Subject", "StClass"};
+			String columns[] = {"First name", "Last name", "Registration number", "Gender", "Age", "Subject", "Class"};
 			String data[][] = new String[8][7];
 			
 			int i = 0;

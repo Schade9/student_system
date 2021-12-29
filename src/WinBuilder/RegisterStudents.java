@@ -181,7 +181,9 @@ public class RegisterStudents extends JFrame {
 		
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
+				Dashboard dashboard = new Dashboard();
+				dashboard.setVisible(true);
 			}
 		});	
 	}

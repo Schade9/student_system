@@ -19,10 +19,10 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 
-public class Login extends JFrame {
+public class StudentLogin extends JFrame {
 	
 	private JPanel contentPane;
-	private JTextField usernametextField;
+	private JTextField firstnametextField;
 	private JTextField passwordtextField;
 	private JPasswordField passwordField;
 
@@ -33,7 +33,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					StudentLogin frame = new StudentLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class Login extends JFrame {
 	/**
 	 * Create frame
 	 */
-	public Login() {
+	public StudentLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -54,19 +54,19 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblLogin = new JLabel("LOGIN AS TEACHER");
-		lblLogin.setBounds(193, 12, 70, 15);
+		JLabel lblLogin = new JLabel("LOGIN AS STUDENT");
+		lblLogin.setBounds(157, 12, 170, 15);
 		contentPane.add(lblLogin);
 		
 		// username
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(74, 52, 98, 15);
-		contentPane.add(lblUsername);
+		JLabel lblFirstname = new JLabel("First name");
+		lblFirstname.setBounds(74, 52, 98, 15);
+		contentPane.add(lblFirstname);
 		
-		usernametextField = new JTextField();
-		usernametextField.setBounds(187, 50, 114, 19);
-		contentPane.add(usernametextField);
-		usernametextField.setColumns(10);
+		firstnametextField = new JTextField();
+		firstnametextField.setBounds(187, 50, 114, 19);
+		contentPane.add(firstnametextField);
+		firstnametextField.setColumns(10);
 		
 		// password
 		JLabel lblPassword = new JLabel("Password");
@@ -91,23 +91,23 @@ public class Login extends JFrame {
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_sytem?useSSL=false","root","");
 					System.out.println("Connection to db established");
 					
-					String username = usernametextField.getText().toString();
+					String first_name = firstnametextField.getText().toString();
 					String password = passwordField.getText().toString();
 					
 					Statement stm = con.createStatement();
-					String sql = "Select * from teachers where username='"+username+"' and password='"+password+"'";
+					String sql = "Select * from students where first_name='"+first_name+"' and registration_number='"+password+"'";
 					ResultSet rs = stm.executeQuery(sql);
 					
 					if(rs.next()) {
 						// if username and password is true
 						dispose(); // close login page
-						Dashboard dash = new Dashboard();
+						StudentDashboard dash = new StudentDashboard();
 						dash.setVisible(true);
 					} else {
 						// if username and password is false
 						//JOptionPane.showMessageDialog(this, "username or password wrong..");
 						System.out.println("username or password wrong");
-						usernametextField.setText("");
+						firstnametextField.setText("");
 						passwordField.setText("");
 					}
 					
@@ -125,20 +125,20 @@ public class Login extends JFrame {
 		
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				usernametextField.setText("");
+				firstnametextField.setText("");
 				passwordtextField.setText("");
 			}
 		});
 		
-		JButton btnLoginAsStudent = new JButton("Login as student");
-		btnLoginAsStudent.setBounds(193, 164, 154, 25);
-		contentPane.add(btnLoginAsStudent);
+		JButton btnLoginAsTeacher = new JButton("Login as teacher");
+		btnLoginAsTeacher.setBounds(184, 162, 153, 25);
+		contentPane.add(btnLoginAsTeacher);
 		
-		btnLoginAsStudent.addActionListener(new ActionListener() {
+		btnLoginAsTeacher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				StudentLogin sl = new StudentLogin();
-				sl.setVisible(true);
+				Login login = new Login();
+				login.setVisible(true);
 			}
 		});
 	}
